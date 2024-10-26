@@ -1,0 +1,17 @@
+pipeline {
+    agent {
+        docker {
+            image 'docker:24.0.7' // Specify the Docker image
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    stages {
+        stage('Verify Docker') {
+            steps {
+                script {
+                    sh 'docker --version'
+                }
+            }
+        }
+    }
+}
